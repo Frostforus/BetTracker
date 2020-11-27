@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">BetTracker</string>
+    <string name="bet_over">Bet over</string>
+    <string name="my_bets">My Bets</string>
+    <string name="my_statistics">My Statistics</string>
+    <string name="settings">Settings</string>
+    <string name="new_bet_item">New Bet Item</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="estimated_price">Estimated Price</string>
+    <string name="already_purchased">Already Purchased</string>
+
+    <string-array name="category_items">
+        <item>Food</item>
+        <item>Electronic</item>
+        <item>Book</item>
+    </string-array>
 </resources>
