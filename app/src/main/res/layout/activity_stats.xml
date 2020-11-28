@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/activity_holiday"
+    android:id="@+id/activity_stats"
     tools:context=".list_data.StatsActivity">
 
     <com.github.mikephil.charting.charts.PieChart

@@ -9,6 +9,12 @@ interface BetItemDao {
     @Query("SELECT * FROM betitem")
     fun getAll(): List<BetItem>
 
+    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 1")
+    fun getBetsOver(): Int
+
+    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 1")
+    fun getBetsNotOver(): Int
+
     @Insert
     fun insert(BetItems: BetItem): Long
 

@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import hu.bme.aut.shoppinglist.data.BetItem
 
-
-@Database(entities = [BetItem::class], version = 1)
+//TODO: Make migration work
+@Database(entities = [BetItem::class], version = 3)
 @TypeConverters(value = [BetItem.Category::class])
 abstract class BetListDatabase : RoomDatabase() {
     abstract fun betItemDao(): BetItemDao

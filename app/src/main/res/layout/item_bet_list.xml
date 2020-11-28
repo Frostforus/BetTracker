@@ -35,25 +35,25 @@
             android:id="@+id/ShoppingItemNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Apple" />
+            tools:text="Bet with" />
 
         <TextView
             android:id="@+id/ShoppingItemDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="My favorite fruit" />
+            tools:text="Bet description" />
 
         <TextView
             android:id="@+id/ShoppingItemCategoryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Food" />
+            tools:text="Bet type" />
 
         <TextView
             android:id="@+id/ShoppingItemPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="20 Ft" />
+            tools:text="Bet value" />
     </LinearLayout>
 
     <ImageButton

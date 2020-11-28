@@ -36,8 +36,8 @@ class BetActivity : AppCompatActivity(), BetAdapter.BetItemClickListener,
         database = Room.databaseBuilder(
             applicationContext,
             BetListDatabase::class.java,
-            "shopping-list"
-        ).build()
+            "bet-list"
+        ).fallbackToDestructiveMigration().build()
         initRecyclerView()
     }
 

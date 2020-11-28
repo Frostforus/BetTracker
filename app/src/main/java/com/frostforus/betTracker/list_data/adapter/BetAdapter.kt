@@ -27,12 +27,12 @@ class BetAdapter(private val listener: BetItemClickListener) :
 
     override fun onBindViewHolder(holder: BetViewHolder, position: Int) {
         val item = items[position]
-        holder.nameTextView.text = item.name
+        holder.nameTextView.text = item.nameOfBetWith
         holder.descriptionTextView.text = item.description
         holder.categoryTextView.text = item.category.name
-        holder.priceTextView.text = item.estimatedPrice.toString() + " Ft"
+        holder.priceTextView.text = item.pot + " Ft"
         holder.iconImageView.setImageResource(getImageResource(item.category))
-        holder.isBoughtCheckBox.isChecked = item.isBought
+        holder.isBoughtCheckBox.isChecked = item.betOver
 
         holder.item = item
     }
@@ -65,9 +65,9 @@ class BetAdapter(private val listener: BetItemClickListener) :
 
     @DrawableRes
     private fun getImageResource(category: BetItem.Category) = when (category) {
-        BetItem.Category.BOOK -> R.drawable.open_book
-        BetItem.Category.ELECTRONIC -> R.drawable.lightning
-        BetItem.Category.FOOD -> R.drawable.groceries
+        BetItem.Category.ITEM -> R.drawable.hand_shake
+        BetItem.Category.ACTION -> R.drawable.hand_shake
+        BetItem.Category.MONEY -> R.drawable.hand_shake
     }
 
     inner class BetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
