@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/activity_stats"
+    android:background="@color/colorPrimary"
     tools:context=".list_data.StatsActivity">
 
     <com.github.mikephil.charting.charts.PieChart
