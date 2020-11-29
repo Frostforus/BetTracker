@@ -32,7 +32,7 @@ class StatsActivity : AppCompatActivity() {
     private fun loadStats() {
         thread {
             val betsOver = database.betItemDao().getBetsOver()
-            val betsNotOver = database.betItemDao().getBetsOver()
+            val betsNotOver = database.betItemDao().getBetsNotOver()
             val entries = listOf(
                 //TODO: get this shit to work
 

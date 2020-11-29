@@ -12,8 +12,11 @@ interface BetItemDao {
     @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 1")
     fun getBetsOver(): Int
 
-    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 1")
+    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 0")
     fun getBetsNotOver(): Int
+
+    @Query("SELECT * FROM betitem WHERE id = (:betId)")
+    fun getById(betId: Long?): BetItem?
 
     @Insert
     fun insert(BetItems: BetItem): Long

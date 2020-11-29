@@ -3,76 +3,59 @@ package com.frostforus.betTracker.list_data
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.adapter.BetAdapter
 import com.frostforus.betTracker.list_data.data.BetListDatabase
+import com.frostforus.betTracker.list_data.fragments.BetItemDetailsFragment
 import com.frostforus.betTracker.list_data.fragments.NewBetItemDialogFragment
+import com.frostforus.betTracker.list_data.fragments.RecyclerViewFragment
 import hu.bme.aut.shoppinglist.data.BetItem
-import kotlinx.android.synthetic.main.activity_bets.*
-import kotlinx.android.synthetic.main.content_main.*
 import kotlin.concurrent.thread
 
-class BetActivity : AppCompatActivity(), BetAdapter.BetItemClickListener,
+class BetActivity : AppCompatActivity(),
     NewBetItemDialogFragment.NewBetItemDialogListener {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BetAdapter
-    private lateinit var database: BetListDatabase
+    lateinit var database: BetListDatabase
+    var hello: Int = 0
+    lateinit var adapter: BetAdapter
+
+    var FIRST_FLAG: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bets)
 
-
-        fab.setOnClickListener {
-            NewBetItemDialogFragment().show(
-                supportFragmentManager,
-                NewBetItemDialogFragment.TAG
-            )
-        }
         database = Room.databaseBuilder(
             applicationContext,
             BetListDatabase::class.java,
             "bet-list"
         ).fallbackToDestructiveMigration().build()
-        initRecyclerView()
+
+        showFragmentByTag(RecyclerViewFragment.TAG)
     }
 
-    private fun initRecyclerView() {
-        recyclerView = MainRecyclerView
-        adapter = BetAdapter(this)
-        loadItemsInBackground()
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-    }
-
-    private fun loadItemsInBackground() {
-        thread {
-            val items = database.betItemDao().getAll()
-            runOnUiThread {
-                adapter.update(items)
+    public fun showFragmentByTag(tag: String, betItem: BetItem? = null) {
+        var fragment = supportFragmentManager.findFragmentByTag(tag)
+        if (fragment == null) {
+            if (RecyclerViewFragment.TAG == tag) {
+                fragment = RecyclerViewFragment()
+            } else if (BetItemDetailsFragment.TAG == tag && betItem != null) {
+                fragment = BetItemDetailsFragment(betItem)
             }
         }
-    }
 
+        if (fragment != null) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.fragmentContainer, fragment, tag)
 
-    override fun onItemChanged(item: BetItem) {
-        thread {
-            database.betItemDao().update(item)
-            Log.d("MainActivity", "ShoppingItem update was successful")
-        }
-    }
-
-    //hihi
-    override fun onItemDeleted(item: BetItem) {
-        thread {
-            database.betItemDao().deleteItem(item)
-        }
-        runOnUiThread {
-            adapter.deleteItem(item)
+            if (!FIRST_FLAG) {
+                ft.addToBackStack(null) // add fragment transaction to the back stack
+                Log.v("BackStack", "Added to backstack")
+            } else {
+                FIRST_FLAG = !FIRST_FLAG
+            }
+            ft.commit()
         }
     }
 
@@ -82,9 +65,9 @@ class BetActivity : AppCompatActivity(), BetAdapter.BetItemClickListener,
             val newShoppingItem = newItem.copy(
                 id = newId
             )
-            runOnUiThread {
-                adapter.addItem(newShoppingItem)
-            }
+            //delete runonui thread coz were on the main thread
+            adapter.addItem(newShoppingItem)
         }
     }
+
 }

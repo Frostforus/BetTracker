@@ -1,18 +1,19 @@
 package com.frostforus.betTracker.list_data.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import com.frostforus.betTracker.R
+import com.frostforus.betTracker.list_data.BetActivity
+import com.frostforus.betTracker.list_data.fragments.BetItemDetailsFragment
 import hu.bme.aut.shoppinglist.data.BetItem
+import kotlin.concurrent.thread
 
-class BetAdapter(private val listener: BetItemClickListener) :
+class BetAdapter(private val listener: BetItemClickListener, private val activity: BetActivity) :
     RecyclerView.Adapter<BetAdapter.BetViewHolder>() {
 
 
@@ -22,6 +23,7 @@ class BetAdapter(private val listener: BetItemClickListener) :
         val itemView: View = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_bet_list, parent, false)
+        Log.v("creatingbetadapter", items.toString())
         return BetViewHolder(itemView)
     }
 
@@ -65,12 +67,13 @@ class BetAdapter(private val listener: BetItemClickListener) :
 
     @DrawableRes
     private fun getImageResource(category: BetItem.Category) = when (category) {
-        BetItem.Category.ITEM -> R.drawable.hand_shake
-        BetItem.Category.ACTION -> R.drawable.hand_shake
-        BetItem.Category.MONEY -> R.drawable.hand_shake
+        BetItem.Category.ITEM -> R.drawable.light_bulb
+        BetItem.Category.ACTION -> R.drawable.mega_phone
+        BetItem.Category.MONEY -> R.drawable.cash
     }
 
     inner class BetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val iconImageView: ImageView
         val nameTextView: TextView
         val descriptionTextView: TextView
@@ -78,6 +81,7 @@ class BetAdapter(private val listener: BetItemClickListener) :
         val priceTextView: TextView
         val isBoughtCheckBox: CheckBox
         val removeButton: ImageButton
+        val viewButton: Button
 
         var item: BetItem? = null
 
@@ -90,12 +94,27 @@ class BetAdapter(private val listener: BetItemClickListener) :
             priceTextView = itemView.findViewById(R.id.ShoppingItemPriceTextView)
             isBoughtCheckBox = itemView.findViewById(R.id.ShoppingItemIsBoughtCheckBox)
             removeButton = itemView.findViewById(R.id.ShoppingItemRemoveButton)
+            viewButton = itemView.findViewById(R.id.btn_view_single_bet)
             //hihi
             removeButton.setOnClickListener {
                 item?.let {
                     listener.onItemDeleted(it)
+                    Log.v("Listener", "Calling delete")
                 }
             }
+
+            viewButton.setOnClickListener {
+                thread {
+                    activity.showFragmentByTag(
+                        BetItemDetailsFragment.TAG, activity.database.betItemDao().getById(
+                            item?.id
+                        )
+                    )
+                    Log.v("Listener", "Its working")
+                }
+
+            }
+
 
         }
     }

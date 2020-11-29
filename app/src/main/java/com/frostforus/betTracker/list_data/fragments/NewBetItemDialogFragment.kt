@@ -35,7 +35,7 @@ class NewBetItemDialogFragment : DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         listener = context as? NewBetItemDialogListener
-            ?: throw RuntimeException("Activity must implement the NewShoppingItemDialogListener interface!")
+            ?: throw RuntimeException("Activity must implement the NewBetItemDialogListener interface!")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
