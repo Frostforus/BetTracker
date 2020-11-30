@@ -52,13 +52,18 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
         (rootView.findViewById<View>(R.id.tv_bet_start) as TextView).text =
             getString(
                 R.string.hungarian_date_format,
-                betItem.betEndYear,
-                betItem.betEndMonth,
-                betItem.betEndDay
+                betItem.betStartYear,
+                betItem.betStartMonth,
+                betItem.betStartDay
             )
 
         //Load bet's end date
-        (rootView.findViewById<View>(R.id.tv_bet_end) as TextView).text = betItem.id.toString()
+        (rootView.findViewById<View>(R.id.tv_bet_end) as TextView).text = getString(
+            R.string.hungarian_date_format,
+            betItem.betEndYear,
+            betItem.betEndMonth,
+            betItem.betEndDay
+        )
 
         Log.v("loadingBetItem", betItem.toString())
     }

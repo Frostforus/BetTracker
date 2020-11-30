@@ -22,10 +22,10 @@
 
         <activity
             android:name="com.frostforus.betTracker.list_data.BetActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.frostforus.betTracker.list_data.StatsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

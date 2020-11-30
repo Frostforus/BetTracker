@@ -3,6 +3,7 @@ package com.frostforus.betTracker.list_data.fragments
 
 import android.app.Dialog
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,9 +62,14 @@ class NewBetItemDialogFragment : DialogFragment() {
         category = BetItem.Category.getByOrdinal(categorySpinner.selectedItemPosition)
             ?: BetItem.Category.ITEM,
         betOver = alreadyPurchasedCheckBox.isChecked,
+
         betEndYear = picker.year.toShort(),
         betEndMonth = picker.month.toShort(),
-        betEndDay = picker.dayOfMonth.toShort()
+        betEndDay = picker.dayOfMonth.toShort(),
+
+        betStartYear = Calendar.getInstance().get(Calendar.YEAR).toShort(),
+        betStartMonth = Calendar.getInstance().get(Calendar.MONTH).toShort(),
+        betStartDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toShort()
     )
 
     private fun getContentView(): View {
