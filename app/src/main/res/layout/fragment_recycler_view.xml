@@ -14,4 +14,12 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_white_36dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/light_bulb" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

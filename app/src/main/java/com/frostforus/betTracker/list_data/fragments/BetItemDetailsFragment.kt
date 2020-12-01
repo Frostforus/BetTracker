@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.frostforus.betTracker.R
 import hu.bme.aut.shoppinglist.data.BetItem
+import net.glxn.qrgen.android.QRCode
 
 class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
     companion object {
@@ -64,6 +66,10 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
             betItem.betEndMonth,
             betItem.betEndDay
         )
+
+        val bitmap = QRCode.from(betItem.toString()).withSize(1000, 1000).bitmap()
+
+        (rootView.findViewById<View>(R.id.qr_code_image) as ImageView).setImageBitmap(bitmap)
 
         Log.v("loadingBetItem", betItem.toString())
     }

@@ -17,7 +17,7 @@ class BetActivity : AppCompatActivity(),
     NewBetItemDialogFragment.NewBetItemDialogListener {
 
     lateinit var database: BetListDatabase
-    var hello: Int = 0
+
     lateinit var adapter: BetAdapter
 
     var FIRST_FLAG: Boolean = true
@@ -35,7 +35,7 @@ class BetActivity : AppCompatActivity(),
         showFragmentByTag(RecyclerViewFragment.TAG)
     }
 
-    public fun showFragmentByTag(tag: String, betItem: BetItem? = null) {
+    fun showFragmentByTag(tag: String, betItem: BetItem? = null) {
         var fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
             if (RecyclerViewFragment.TAG == tag) {

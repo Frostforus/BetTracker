@@ -38,6 +38,7 @@
 
 
             <ImageView
+                android:id="@+id/qr_code_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center"

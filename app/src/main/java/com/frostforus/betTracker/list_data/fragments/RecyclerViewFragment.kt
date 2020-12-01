@@ -12,6 +12,7 @@ import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.BetActivity
 import com.frostforus.betTracker.list_data.adapter.BetAdapter
 import hu.bme.aut.shoppinglist.data.BetItem
+import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlin.concurrent.thread
 
 
@@ -30,11 +31,7 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false)
-
-
         loadItemsInBackground()
-
-
         adapter = BetAdapter(this, (activity as BetActivity))
         (activity as BetActivity).adapter = adapter
 
@@ -53,6 +50,14 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
                 NewBetItemDialogFragment.TAG
             )
             Log.v("clicked fab", "hello")
+        }
+        //TODO: refactor this shit wtf is fab man no one knows, ok we know what it is but wtf gtfo
+        fab2.setOnClickListener {
+            NewBetItemDialogFragment().show(
+                (activity as BetActivity).supportFragmentManager,
+                NewBetItemDialogFragment.TAG
+            )
+            Log.v("clicked fab2", "hello")
         }
 
         return rootView
