@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.BetActivity
 import com.frostforus.betTracker.list_data.adapter.BetAdapter
+import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.CaptureActivity
 import hu.bme.aut.shoppinglist.data.BetItem
-import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlin.concurrent.thread
 
 
@@ -52,12 +53,10 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
             Log.v("clicked fab", "hello")
         }
         //TODO: refactor this shit wtf is fab man no one knows, ok we know what it is but wtf gtfo
+        val fab2 = rootView.findViewById<View>(R.id.fab2)
         fab2.setOnClickListener {
-            NewBetItemDialogFragment().show(
-                (activity as BetActivity).supportFragmentManager,
-                NewBetItemDialogFragment.TAG
-            )
-            Log.v("clicked fab2", "hello")
+            scanQRCode()
+            Log.v("qrcode", "Scanning for QRCODE")
         }
 
         return rootView
@@ -89,6 +88,17 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
         //delete runonui thread coz were on the main thread
         adapter.deleteItem(item)
 
+    }
+
+    // QR CODE SCANNER
+    private fun scanQRCode() {
+        val integrator = IntentIntegrator((activity as BetActivity)).apply {
+            captureActivity = CaptureActivity::class.java
+            setOrientationLocked(false)
+            setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+            setPrompt("Scanning Code")
+        }
+        integrator.initiateScan()
     }
 
 
