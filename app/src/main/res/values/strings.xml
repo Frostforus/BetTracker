@@ -16,6 +16,10 @@
     <string name="Deadline">Deadline</string>
     <string name="pick_date">Pick date</string>
 
+    <string name="check_if_on">Check service</string>
+    <string name="turn_on_notifications">Turn On Notifications</string>
+    <string name="turn_off_notifications">Turn Off Notifications</string>
+
     <string-array name="category_items">
         <item>Money</item>
         <item>Action</item>
