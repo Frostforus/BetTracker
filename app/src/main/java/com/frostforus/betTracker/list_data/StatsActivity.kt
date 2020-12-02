@@ -43,8 +43,6 @@ class StatsActivity : AppCompatActivity() {
                 )
             } else {
                 listOf(
-                    //TODO: get this shit to work
-
                     PieEntry(betsInProgress.toFloat(), getString(R.string.inprogress)),
                     PieEntry(betsWon.toFloat(), getString(R.string.won)),
                     PieEntry(betsLost.toFloat(), getString(R.string.lost))

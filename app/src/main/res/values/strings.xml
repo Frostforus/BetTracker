@@ -1,5 +1,9 @@
 <resources>
+    <!--Templates    -->
     <string name="hungarian_date_format">%1$d.%2$d.%3$d</string>
+    <string name="date_deadline">%1$s - %2$s</string>
+    <string name="title_bet_with">Bet with: %1s</string>
+
     <string name="app_name">BetTracker</string>
     <string name="bet_over">Bet over</string>
     <string name="my_bets">My Bets</string>
@@ -25,6 +29,7 @@
     <string name="lost">Lost</string>
     <string name="nodata">No Data</string>
 
+
     <string-array name="category_items">
         <item>Money</item>
         <item>Action</item>
@@ -36,4 +41,17 @@
         <item>Won</item>
         <item>Lost</item>
     </string-array>
+
+    <string name="description_autofill_hints">Bitcoin hits $100.000</string>
+    <string name="view">View</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="id">Id:</string>
+    <string name="bet_with">Bet with:</string>
+    <string name="description_label">Description:</string>
+    <string name="category_label">Category:</string>
+    <string name="pot_label">Pot:</string>
+    <string name="bet_status_label">Bet status:</string>
+    <string name="bet_start_label">Bet Start:</string>
+    <string name="bet_end_label">Bet End:</string>
+
 </resources>

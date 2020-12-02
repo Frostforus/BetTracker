@@ -52,7 +52,7 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
             )
             Log.v("clicked fab", "hello")
         }
-        //TODO: refactor this shit wtf is fab man no one knows, ok we know what it is but wtf gtfo
+
         val fab2 = rootView.findViewById<View>(R.id.fab2)
         fab2.setOnClickListener {
             scanQRCode()
@@ -66,7 +66,7 @@ class RecyclerViewFragment : Fragment(), BetAdapter.BetItemClickListener {
         thread {
 
             val items = (activity as BetActivity).database.betItemDao().getAll()
-            //delete runonui thread coz were on the main thread
+            //delete run on ui thread coz were on the main thread
             adapter.update(items)
 
         }

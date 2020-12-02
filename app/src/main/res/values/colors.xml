@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--TODO: Get colors sorted!-->
     <color name="colorPrimary">#E9BF8C</color>
     <color name="colorPrimaryDark">#976D45</color>
     <color name="colorAccent">#34454F</color>
     <color name="colorBackground">#CEEBF9</color>
-
-
-    <color name="colorTransparentFifty">#80FFFFFF</color>
-
-
 </resources>

@@ -8,31 +8,28 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.data.BetItem
 
-//TODO: Rename all this shit
 private lateinit var nameEditText: EditText
 private lateinit var descriptionEditText: EditText
-private lateinit var estimatedPriceEditText: EditText
+private lateinit var potEditText: EditText
 private lateinit var categorySpinner: Spinner
 private lateinit var statusSpinner: Spinner
 
-private lateinit var alreadyPurchasedCheckBox: CheckBox
+
 private lateinit var picker: DatePicker
 
 class NewBetItemDialogFragment : DialogFragment() {
     interface NewBetItemDialogListener {
         fun onBetItemCreated(newItem: BetItem)
     }
-
-
-    var dateYear: Short = 0
-    var dateMonth: Short = 0
-    var dateDay: Short = 0
 
     private lateinit var listener: NewBetItemDialogListener
 
@@ -61,7 +58,7 @@ class NewBetItemDialogFragment : DialogFragment() {
         id = null,
         nameOfBetWith = nameEditText.text.toString(),
         description = descriptionEditText.text.toString(),
-        pot = estimatedPriceEditText.text.toString(),
+        pot = potEditText.text.toString(),
         category = BetItem.Category.getByOrdinal(categorySpinner.selectedItemPosition)
             ?: BetItem.Category.ITEM,
         status = BetItem.Status.getByOrdinal(statusSpinner.selectedItemPosition)
@@ -86,9 +83,9 @@ class NewBetItemDialogFragment : DialogFragment() {
         Log.v("new bet", "lets go")
 
         picker = contentView.findViewById(R.id.datePicker1)
-        nameEditText = contentView.findViewById(R.id.ShoppingItemNameEditText)
-        descriptionEditText = contentView.findViewById(R.id.ShoppingItemDescriptionEditText)
-        estimatedPriceEditText = contentView.findViewById(R.id.ShoppingItemEstimatedPriceEditText)
+        nameEditText = contentView.findViewById(R.id.BetItemNameEditText)
+        descriptionEditText = contentView.findViewById(R.id.BetItemDescriptionEditText)
+        potEditText = contentView.findViewById(R.id.BetItemPotEditText)
         categorySpinner = contentView.findViewById(R.id.CategorySpinner)
         categorySpinner.adapter = ArrayAdapter(
             requireContext(),

@@ -17,7 +17,7 @@ import kotlin.concurrent.thread
 
 class SettingsActivity : AppCompatActivity() {
 
-    private var FIRST_FLAG: Boolean = true
+    private var FIRSTFLAG: Boolean = true
     private lateinit var database: BetListDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
 
         btn_toggle_notifications.setOnClickListener {
             Log.v("SERVICE", "Button hit")
-            if (FIRST_FLAG) {
+            if (FIRSTFLAG) {
                 Log.v("SERVICE", "First time")
                 if (isMyServiceRunning(NotificationService::class.java)) {
                     Log.v("SERVICE", "It was on")
@@ -35,7 +35,7 @@ class SettingsActivity : AppCompatActivity() {
                     Log.v("SERVICE", "It was off")
                     btn_toggle_notifications.text = getString(R.string.turn_on_notifications)
                 }
-                FIRST_FLAG = false
+                FIRSTFLAG = false
             } else {
                 Log.v("SERVICE", "Not the first time")
                 if (isMyServiceRunning(NotificationService::class.java)) {
@@ -64,16 +64,14 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun changeName(newName: String) {
+    private fun changeName(newName: String) {
         thread {
             Log.v("Changing name to:", newName)
-            //TODO undo whitespace replacement
+
             val newItem = NameItemSingleton(1, newName.replace(" ", "_"))
 
-
-
             if (database.NameItemSingletonDao().getName().isNullOrEmpty()) {
-                val newId = database.NameItemSingletonDao().insert(newItem)
+                database.NameItemSingletonDao().insert(newItem)
             } else {
                 database.NameItemSingletonDao().update(newItem)
             }
@@ -82,16 +80,16 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
         val manager: ActivityManager =
-            getSystemService(Context.ACTIVITY_SERVICE) as (ActivityManager);
+            getSystemService(Context.ACTIVITY_SERVICE) as (ActivityManager)
 
         for (service: ActivityManager.RunningServiceInfo in manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.name == service.service.className) {
-                return true;
+                return true
             }
         }
-        return false;
+        return false
     }
 
 

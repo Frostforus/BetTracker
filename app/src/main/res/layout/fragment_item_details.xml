@@ -19,20 +19,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/asd"
+                android:id="@+id/title_with_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="24sp"
-                android:text="Title"
-                tools:text="Train pass" />
+                android:text=""
+                tools:text="Title" />
 
             <TextView
-                android:id="@+id/asddd"
+                android:id="@+id/top_deadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Deadline:"
+                android:text=""
                 android:textSize="16sp"
                 tools:text="1999.11.22. - 2000.01.02 " />
 
@@ -42,7 +42,7 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/qrcode"
                 android:src="@drawable/qrcode" />
         </LinearLayout>
 
@@ -63,56 +63,57 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Id:" />
+                    android:text="@string/id" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Bet with:" />
+                    android:text="@string/bet_with" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Description:" />
+                    android:text="@string/description_label" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Category:" />
+                    android:text="@string/category_label" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Pot:" />
+                    android:text="@string/pot_label" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Bet status:" />
+                    android:text="@string/bet_status_label" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Bet Start:" />
+                    android:text="@string/bet_start_label" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Bet End:" />
+
+                    android:text="@string/bet_end_label" />
 
 
             </LinearLayout>
@@ -128,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -136,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -144,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -152,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -160,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -168,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -176,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -184,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="TextView"
+
                     tools:ignore="RtlHardcoded" />
 
             </LinearLayout>

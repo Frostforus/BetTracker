@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 
-//TODO: have won/lost/in progress there needs to be another enum which tracks what the status is: In progress/won/lost
 @Entity(tableName = "betitem")
 data class BetItem(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Long?,

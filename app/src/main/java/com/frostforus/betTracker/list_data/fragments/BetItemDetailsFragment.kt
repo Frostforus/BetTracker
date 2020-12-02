@@ -22,7 +22,7 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_item_details, container, false)
         loadBetData(rootView)
         return rootView
@@ -34,24 +34,44 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
 
         //Load name of who the bet is with
         (rootView.findViewById<View>(R.id.tv_bet_with) as TextView).text =
-            betItem.nameOfBetWith.toString()
+            betItem.nameOfBetWith
 
         //Load bet's description
         (rootView.findViewById<View>(R.id.tv_description) as TextView).text =
-            betItem.description.toString()
+            betItem.description
 
         //Load bet's category
         (rootView.findViewById<View>(R.id.tv_category) as TextView).text =
             betItem.category.toString()
 
         //Load bet's pot
-        (rootView.findViewById<View>(R.id.tv_pot) as TextView).text = betItem.pot.toString()
+        (rootView.findViewById<View>(R.id.tv_pot) as TextView).text = betItem.pot
 
         //Load is bet over
         (rootView.findViewById<View>(R.id.tv_bet_over) as TextView).text =
             betItem.status.toString()
 
-        //TODO: Load bet's start date
+        (rootView.findViewById<View>(R.id.title_with_name) as TextView).text = getString(
+            R.string.title_bet_with, betItem.nameOfBetWith
+        )
+
+        (rootView.findViewById<View>(R.id.top_deadline) as TextView).text =
+            getString(
+                R.string.date_deadline,
+                getString(
+                    R.string.hungarian_date_format,
+                    betItem.betStartYear,
+                    betItem.betStartMonth,
+                    betItem.betStartDay
+                ),
+                getString(
+                    R.string.hungarian_date_format,
+                    betItem.betEndYear,
+                    betItem.betEndMonth,
+                    betItem.betEndDay
+                )
+            )
+
         (rootView.findViewById<View>(R.id.tv_bet_start) as TextView).text =
             getString(
                 R.string.hungarian_date_format,

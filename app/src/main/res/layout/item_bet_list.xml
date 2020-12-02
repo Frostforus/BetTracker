@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <CheckBox
-            android:id="@+id/ShoppingItemIsBoughtCheckBox"
+            android:id="@+id/BetItemIsWonCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -26,12 +26,12 @@
             android:id="@+id/btn_view_single_bet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View" />
+            android:text="@string/view" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ShoppingItemIconImageView"
+        android:id="@+id/BetItemIconImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
@@ -46,32 +46,32 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/ShoppingItemNameTextView"
+            android:id="@+id/BetItemNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Bet with" />
 
         <TextView
-            android:id="@+id/ShoppingItemDescriptionTextView"
+            android:id="@+id/BetItemDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Bet description" />
 
         <TextView
-            android:id="@+id/ShoppingItemCategoryTextView"
+            android:id="@+id/BetItemCategoryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Bet type" />
 
         <TextView
-            android:id="@+id/ShoppingItemPriceTextView"
+            android:id="@+id/BetItemPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Bet value" />
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/ShoppingItemRemoveButton"
+        android:id="@+id/BetItemRemoveButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="50dp"
         android:layout_height="50dp"

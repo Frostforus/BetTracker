@@ -32,7 +32,7 @@ class BetAdapter(private val listener: BetItemClickListener, private val activit
         holder.nameTextView.text = item.nameOfBetWith
         holder.descriptionTextView.text = item.description
         holder.categoryTextView.text = item.category.name
-        holder.priceTextView.text = item.pot + " Ft"
+        holder.priceTextView.text = item.pot
         holder.iconImageView.setImageResource(getImageResource(item.category))
         holder.isBoughtCheckBox.isChecked = (item.status.name == BetItem.Status.WON.name)
 
@@ -87,13 +87,13 @@ class BetAdapter(private val listener: BetItemClickListener, private val activit
 
 
         init {
-            iconImageView = itemView.findViewById(R.id.ShoppingItemIconImageView)
-            nameTextView = itemView.findViewById(R.id.ShoppingItemNameTextView)
-            descriptionTextView = itemView.findViewById(R.id.ShoppingItemDescriptionTextView)
-            categoryTextView = itemView.findViewById(R.id.ShoppingItemCategoryTextView)
-            priceTextView = itemView.findViewById(R.id.ShoppingItemPriceTextView)
-            isBoughtCheckBox = itemView.findViewById(R.id.ShoppingItemIsBoughtCheckBox)
-            removeButton = itemView.findViewById(R.id.ShoppingItemRemoveButton)
+            iconImageView = itemView.findViewById(R.id.BetItemIconImageView)
+            nameTextView = itemView.findViewById(R.id.BetItemNameTextView)
+            descriptionTextView = itemView.findViewById(R.id.BetItemDescriptionTextView)
+            categoryTextView = itemView.findViewById(R.id.BetItemCategoryTextView)
+            priceTextView = itemView.findViewById(R.id.BetItemPriceTextView)
+            isBoughtCheckBox = itemView.findViewById(R.id.BetItemIsWonCheckBox)
+            removeButton = itemView.findViewById(R.id.BetItemRemoveButton)
             viewButton = itemView.findViewById(R.id.btn_view_single_bet)
             //hihi
             removeButton.setOnClickListener {
