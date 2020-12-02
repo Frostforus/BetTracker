@@ -20,6 +20,10 @@
     <string name="turn_on_notifications">Turn On Notifications</string>
     <string name="turn_off_notifications">Turn Off Notifications</string>
     <string name="status">Status</string>
+    <string name="inprogress">In Progress</string>
+    <string name="won">Won</string>
+    <string name="lost">Lost</string>
+    <string name="nodata">No Data</string>
 
     <string-array name="category_items">
         <item>Money</item>

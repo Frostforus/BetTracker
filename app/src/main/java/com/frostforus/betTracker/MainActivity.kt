@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.frostforus.betTracker.Settings.SettingsActivity
 import com.frostforus.betTracker.list_data.BetActivity
 import com.frostforus.betTracker.list_data.StatsActivity
-import com.frostforus.betTracker.list_data.broadcastreceiver.NotificationService
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startService(Intent(this@MainActivity, NotificationService::class.java))
+        //startService(Intent(this@MainActivity, NotificationService::class.java))
 
         // This is a higher level function overrides current one
         btn_my_bets.setOnClickListener {

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.frostforus.betTracker.R
+import com.frostforus.betTracker.list_data.BetActivity
 import com.frostforus.betTracker.list_data.data.BetItem
 import net.glxn.qrgen.android.QRCode
 
@@ -67,9 +68,10 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
             betItem.betEndDay
         )
 
-        val x = betItem
-        x.nameOfBetWith = "me"
-        val bitmap = QRCode.from(x.toString()).withSize(1000, 1000).bitmap()
+        val newBetItem = betItem
+        newBetItem.nameOfBetWith = (activity as BetActivity).user_name
+        newBetItem.description = newBetItem.description.replace("\\s".toRegex(), "_")
+        val bitmap = QRCode.from(newBetItem.toString()).withSize(1000, 1000).bitmap()
 
         (rootView.findViewById<View>(R.id.qr_code_image) as ImageView).setImageBitmap(bitmap)
 

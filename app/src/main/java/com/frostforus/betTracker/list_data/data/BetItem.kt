@@ -11,10 +11,10 @@ import androidx.room.TypeConverter
 data class BetItem(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Long?,
     @ColumnInfo(name = "name_of_bet_with") var nameOfBetWith: String,
-    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "category") val category: Category,
     @ColumnInfo(name = "pot") val pot: String,
-    @ColumnInfo(name = "bet_over") val status: Status,
+    @ColumnInfo(name = "status") val status: Status,
 
     @ColumnInfo(name = "bet_end_year") val betEndYear: Short,
     @ColumnInfo(name = "bet_end_month") val betEndMonth: Short,

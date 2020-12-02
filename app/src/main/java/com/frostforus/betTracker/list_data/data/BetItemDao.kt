@@ -8,11 +8,14 @@ interface BetItemDao {
     @Query("SELECT * FROM betitem")
     fun getAll(): List<BetItem>
 
-    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 1")
-    fun getBetsOver(): Int
+    @Query("SELECT COUNT(id) FROM betitem WHERE status = 3")
+    fun getBetsLost(): Int
 
-    @Query("SELECT COUNT(id) FROM betitem WHERE bet_over = 0")
-    fun getBetsNotOver(): Int
+    @Query("SELECT COUNT(id) FROM betitem WHERE status = 1")
+    fun getBetsWon(): Int
+
+    @Query("SELECT COUNT(id) FROM betitem WHERE status = 0")
+    fun getBetsInProgress(): Int
 
     @Query("SELECT * FROM betitem WHERE id = (:betId)")
     fun getById(betId: Long?): BetItem?

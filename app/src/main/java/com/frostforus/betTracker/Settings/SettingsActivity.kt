@@ -6,15 +6,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.broadcastreceiver.NotificationService
+import com.frostforus.betTracker.list_data.data.BetListDatabase
+import com.frostforus.betTracker.list_data.data.NameItemSingleton
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlin.concurrent.thread
 
 
 class SettingsActivity : AppCompatActivity() {
 
     private var FIRST_FLAG: Boolean = true
-
+    private lateinit var database: BetListDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -45,6 +49,35 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
+
+        }
+
+        new_name_button.setOnClickListener {
+            database = Room.databaseBuilder(
+                applicationContext,
+                BetListDatabase::class.java,
+                "bet-list"
+            ).fallbackToDestructiveMigration().build()
+
+            changeName(edittext_new_name.text.toString())
+
+        }
+    }
+
+    fun changeName(newName: String) {
+        thread {
+            Log.v("Changing name to:", newName)
+            //TODO undo whitespace replacement
+            val newItem = NameItemSingleton(1, newName.replace(" ", "_"))
+
+
+
+            if (database.NameItemSingletonDao().getName().isNullOrEmpty()) {
+                val newId = database.NameItemSingletonDao().insert(newItem)
+            } else {
+                database.NameItemSingletonDao().update(newItem)
+            }
+            Log.v("Changed name to", database.NameItemSingletonDao().getName()[0].toString())
 
         }
     }

@@ -31,15 +31,26 @@ class StatsActivity : AppCompatActivity() {
 
     private fun loadStats() {
         thread {
-            val betsOver = database.betItemDao().getBetsOver()
-            val betsNotOver = database.betItemDao().getBetsNotOver()
-            val entries = listOf(
-                //TODO: get this shit to work
+            val betsLost = database.betItemDao().getBetsLost()
+            val betsWon = database.betItemDao().getBetsWon()
+            val betsInProgress = database.betItemDao().getBetsInProgress()
+            Log.v("STATS", betsLost.toString())
+            Log.v("STATS", betsWon.toString())
+            Log.v("STATS", betsInProgress.toString())
+            val entries = if (betsLost == 0 && betsWon == 0 && betsInProgress == 0) {
+                listOf(
+                    PieEntry(1.toFloat(), getString(R.string.nodata))
+                )
+            } else {
+                listOf(
+                    //TODO: get this shit to work
 
-                PieEntry(betsOver.toFloat(), "Vagine"),
-                PieEntry(betsNotOver.toFloat(), "XDDDDD"),
-                PieEntry(3.toFloat(), "Penis")
-            )
+                    PieEntry(betsInProgress.toFloat(), getString(R.string.inprogress)),
+                    PieEntry(betsWon.toFloat(), getString(R.string.won)),
+                    PieEntry(betsLost.toFloat(), getString(R.string.lost))
+                )
+            }
+
 
             val dataSet = PieDataSet(entries, "BRUNCHOS")
             dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()

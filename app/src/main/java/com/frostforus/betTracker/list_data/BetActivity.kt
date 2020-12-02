@@ -24,17 +24,19 @@ class BetActivity : AppCompatActivity(),
 
     lateinit var adapter: BetAdapter
 
+    lateinit var user_name: String
+
     var FIRST_FLAG: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bets)
-
         database = Room.databaseBuilder(
             applicationContext,
             BetListDatabase::class.java,
             "bet-list"
         ).fallbackToDestructiveMigration().build()
+        loadName()
 
         showFragmentByTag(RecyclerViewFragment.TAG)
     }
@@ -75,6 +77,13 @@ class BetActivity : AppCompatActivity(),
         }
     }
 
+    fun loadName() {
+        thread {
+
+            user_name = database.NameItemSingletonDao().getName()[0].name ?: " "
+        }
+    }
+
     // Get the results:
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
@@ -98,8 +107,8 @@ class BetActivity : AppCompatActivity(),
             onBetItemCreated(
                 BetItem(
                     null,
-                    attributes[0].dropLast(1).split("=")[1],
-                    attributes[1].dropLast(1).split("=")[1],
+                    attributes[0].dropLast(1).split("=")[1].replace("_", " "),
+                    attributes[1].dropLast(1).split("=")[1].replace("_", " "),
                     stringToCategory(attributes[2].dropLast(1).split("=")[1]),
                     attributes[3].dropLast(1).split("=")[1],
                     stringToStatus(attributes[4].dropLast(1).split("=")[1]),
