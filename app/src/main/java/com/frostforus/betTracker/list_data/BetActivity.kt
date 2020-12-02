@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.adapter.BetAdapter
+import com.frostforus.betTracker.list_data.data.BetItem
 import com.frostforus.betTracker.list_data.data.BetListDatabase
 import com.frostforus.betTracker.list_data.fragments.BetItemDetailsFragment
 import com.frostforus.betTracker.list_data.fragments.NewBetItemDialogFragment
 import com.frostforus.betTracker.list_data.fragments.RecyclerViewFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
-import hu.bme.aut.shoppinglist.data.BetItem
 import java.lang.Enum
 import kotlin.concurrent.thread
 
@@ -102,7 +102,7 @@ class BetActivity : AppCompatActivity(),
                     attributes[1].dropLast(1).split("=")[1],
                     stringToCategory(attributes[2].dropLast(1).split("=")[1]),
                     attributes[3].dropLast(1).split("=")[1],
-                    attributes[4].dropLast(1).split("=")[1].toBoolean(),
+                    stringToStatus(attributes[4].dropLast(1).split("=")[1]),
                     attributes[5].dropLast(1).split("=")[1].toShort(),
                     attributes[6].dropLast(1).split("=")[1].toShort(),
                     attributes[7].dropLast(1).split("=")[1].toShort(),
@@ -127,5 +127,9 @@ class BetActivity : AppCompatActivity(),
 
     private fun stringToCategory(x: String): BetItem.Category {
         return Enum.valueOf<BetItem.Category>(BetItem.Category::class.java, x)
+    }
+
+    private fun stringToStatus(x: String): BetItem.Status {
+        return Enum.valueOf<BetItem.Status>(BetItem.Status::class.java, x)
     }
 }

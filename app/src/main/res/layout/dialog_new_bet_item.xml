@@ -27,11 +27,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <CheckBox
-                android:id="@+id/ShoppingItemIsPurchasedCheckBox"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/already_won" />
+                android:layout_marginTop="16dip"
+                android:text="@string/status" />
+
+            <Spinner
+                android:id="@+id/StatusSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +66,7 @@
                 android:text="@string/category" />
 
             <Spinner
-                android:id="@+id/ShoppingItemCategorySpinner"
+                android:id="@+id/CategorySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

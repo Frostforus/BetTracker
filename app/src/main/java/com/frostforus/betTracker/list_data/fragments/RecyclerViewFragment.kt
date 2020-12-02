@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.BetActivity
 import com.frostforus.betTracker.list_data.adapter.BetAdapter
+import com.frostforus.betTracker.list_data.data.BetItem
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
-import hu.bme.aut.shoppinglist.data.BetItem
 import kotlin.concurrent.thread
 
 

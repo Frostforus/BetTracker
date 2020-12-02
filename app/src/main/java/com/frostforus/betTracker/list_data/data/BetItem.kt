@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.data
+package com.frostforus.betTracker.list_data.data
 
 import android.util.Log
 import androidx.room.ColumnInfo
@@ -10,11 +10,11 @@ import androidx.room.TypeConverter
 @Entity(tableName = "betitem")
 data class BetItem(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Long?,
-    @ColumnInfo(name = "name_of_bet_with") val nameOfBetWith: String,
+    @ColumnInfo(name = "name_of_bet_with") var nameOfBetWith: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "category") val category: Category,
     @ColumnInfo(name = "pot") val pot: String,
-    @ColumnInfo(name = "bet_over") val betOver: Boolean,
+    @ColumnInfo(name = "bet_over") val status: Status,
 
     @ColumnInfo(name = "bet_end_year") val betEndYear: Short,
     @ColumnInfo(name = "bet_end_month") val betEndMonth: Short,
@@ -41,6 +41,24 @@ data class BetItem(
             @TypeConverter
             fun toInt(category: Category): Int {
                 return category.ordinal
+            }
+        }
+    }
+
+    enum class Status {
+        INPROGRESS, WON, LOST;
+
+        companion object {
+            @JvmStatic
+            @TypeConverter
+            fun getByOrdinal(ordinal: Int): Status? {
+                return values().find { it.ordinal == ordinal }
+            }
+
+            @JvmStatic
+            @TypeConverter
+            fun toInt(status: Status): Int {
+                return status.ordinal
             }
         }
     }

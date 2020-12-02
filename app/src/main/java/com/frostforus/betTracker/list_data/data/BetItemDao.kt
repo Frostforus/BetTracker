@@ -1,7 +1,6 @@
 package com.frostforus.betTracker.list_data.data
 
 import androidx.room.*
-import hu.bme.aut.shoppinglist.data.BetItem
 
 
 @Dao

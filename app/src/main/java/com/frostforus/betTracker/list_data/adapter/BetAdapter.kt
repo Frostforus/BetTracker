@@ -9,8 +9,8 @@ import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import com.frostforus.betTracker.R
 import com.frostforus.betTracker.list_data.BetActivity
+import com.frostforus.betTracker.list_data.data.BetItem
 import com.frostforus.betTracker.list_data.fragments.BetItemDetailsFragment
-import hu.bme.aut.shoppinglist.data.BetItem
 import kotlin.concurrent.thread
 
 class BetAdapter(private val listener: BetItemClickListener, private val activity: BetActivity) :
@@ -34,7 +34,7 @@ class BetAdapter(private val listener: BetItemClickListener, private val activit
         holder.categoryTextView.text = item.category.name
         holder.priceTextView.text = item.pot + " Ft"
         holder.iconImageView.setImageResource(getImageResource(item.category))
-        holder.isBoughtCheckBox.isChecked = item.betOver
+        holder.isBoughtCheckBox.isChecked = (item.status.name == BetItem.Status.WON.name)
 
         holder.item = item
     }

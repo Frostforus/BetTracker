@@ -19,10 +19,17 @@
     <string name="check_if_on">Check service</string>
     <string name="turn_on_notifications">Turn On Notifications</string>
     <string name="turn_off_notifications">Turn Off Notifications</string>
+    <string name="status">Status</string>
 
     <string-array name="category_items">
         <item>Money</item>
         <item>Action</item>
         <item>Item</item>
+    </string-array>
+
+    <string-array name="status_items">
+        <item>In Progress</item>
+        <item>Won</item>
+        <item>Lost</item>
     </string-array>
 </resources>

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.frostforus.betTracker.R
-import hu.bme.aut.shoppinglist.data.BetItem
+import com.frostforus.betTracker.list_data.data.BetItem
 import net.glxn.qrgen.android.QRCode
 
 class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
@@ -48,7 +48,7 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
 
         //Load is bet over
         (rootView.findViewById<View>(R.id.tv_bet_over) as TextView).text =
-            betItem.betOver.toString()
+            betItem.status.toString()
 
         //TODO: Load bet's start date
         (rootView.findViewById<View>(R.id.tv_bet_start) as TextView).text =
@@ -67,7 +67,9 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
             betItem.betEndDay
         )
 
-        val bitmap = QRCode.from(betItem.toString()).withSize(1000, 1000).bitmap()
+        val x = betItem
+        x.nameOfBetWith = "me"
+        val bitmap = QRCode.from(x.toString()).withSize(1000, 1000).bitmap()
 
         (rootView.findViewById<View>(R.id.qr_code_image) as ImageView).setImageBitmap(bitmap)
 

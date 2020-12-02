@@ -12,15 +12,18 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.frostforus.betTracker.R
-import hu.bme.aut.shoppinglist.data.BetItem
+import com.frostforus.betTracker.list_data.data.BetItem
 
 //TODO: Rename all this shit
 private lateinit var nameEditText: EditText
 private lateinit var descriptionEditText: EditText
 private lateinit var estimatedPriceEditText: EditText
 private lateinit var categorySpinner: Spinner
+private lateinit var statusSpinner: Spinner
+
 private lateinit var alreadyPurchasedCheckBox: CheckBox
 private lateinit var picker: DatePicker
+
 class NewBetItemDialogFragment : DialogFragment() {
     interface NewBetItemDialogListener {
         fun onBetItemCreated(newItem: BetItem)
@@ -43,7 +46,7 @@ class NewBetItemDialogFragment : DialogFragment() {
         return AlertDialog.Builder(requireContext())
             .setTitle(R.string.new_bet)
             .setView(getContentView())
-            .setPositiveButton(R.string.ok) { dialogInterface, i ->
+            .setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid()) {
                     listener.onBetItemCreated(getBetItem())
                 }
@@ -61,7 +64,8 @@ class NewBetItemDialogFragment : DialogFragment() {
         pot = estimatedPriceEditText.text.toString(),
         category = BetItem.Category.getByOrdinal(categorySpinner.selectedItemPosition)
             ?: BetItem.Category.ITEM,
-        betOver = alreadyPurchasedCheckBox.isChecked,
+        status = BetItem.Status.getByOrdinal(statusSpinner.selectedItemPosition)
+            ?: BetItem.Status.INPROGRESS,
 
         betEndYear = picker.year.toShort(),
         betEndMonth = picker.month.toShort(),
@@ -85,15 +89,18 @@ class NewBetItemDialogFragment : DialogFragment() {
         nameEditText = contentView.findViewById(R.id.ShoppingItemNameEditText)
         descriptionEditText = contentView.findViewById(R.id.ShoppingItemDescriptionEditText)
         estimatedPriceEditText = contentView.findViewById(R.id.ShoppingItemEstimatedPriceEditText)
-        categorySpinner = contentView.findViewById(R.id.ShoppingItemCategorySpinner)
-        categorySpinner.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                resources.getStringArray(R.array.category_items)
-            )
+        categorySpinner = contentView.findViewById(R.id.CategorySpinner)
+        categorySpinner.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.category_items)
         )
-        alreadyPurchasedCheckBox = contentView.findViewById(R.id.ShoppingItemIsPurchasedCheckBox)
+        statusSpinner = contentView.findViewById(R.id.StatusSpinner)
+        statusSpinner.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.status_items)
+        )
         return contentView
     }
 
