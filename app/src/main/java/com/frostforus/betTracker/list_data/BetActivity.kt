@@ -24,7 +24,7 @@ class BetActivity : AppCompatActivity(),
 
     lateinit var adapter: BetAdapter
 
-    lateinit var user_name: String
+    lateinit var userName: String
 
     var FIRST_FLAG: Boolean = true
 
@@ -79,8 +79,11 @@ class BetActivity : AppCompatActivity(),
 
     fun loadName() {
         thread {
-
-            user_name = database.NameItemSingletonDao().getName()[0].name ?: " "
+            userName = if (database.NameItemSingletonDao().getName().isNullOrEmpty()) {
+                "default_user_name"
+            } else {
+                database.NameItemSingletonDao().getName()[0].name
+            }
         }
     }
 
@@ -110,7 +113,7 @@ class BetActivity : AppCompatActivity(),
                     attributes[0].dropLast(1).split("=")[1].replace("_", " "),
                     attributes[1].dropLast(1).split("=")[1].replace("_", " "),
                     stringToCategory(attributes[2].dropLast(1).split("=")[1]),
-                    attributes[3].dropLast(1).split("=")[1],
+                    attributes[3].dropLast(1).split("=")[1].replace("_", " "),
                     stringToStatus(attributes[4].dropLast(1).split("=")[1]),
                     attributes[5].dropLast(1).split("=")[1].toShort(),
                     attributes[6].dropLast(1).split("=")[1].toShort(),

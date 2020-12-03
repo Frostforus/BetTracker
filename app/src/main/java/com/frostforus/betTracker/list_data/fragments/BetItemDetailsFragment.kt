@@ -89,8 +89,9 @@ class BetItemDetailsFragment(private val betItem: BetItem) : Fragment() {
         )
 
         val newBetItem = betItem
-        newBetItem.nameOfBetWith = (activity as BetActivity).user_name
+        newBetItem.nameOfBetWith = (activity as BetActivity).userName
         newBetItem.description = newBetItem.description.replace("\\s".toRegex(), "_")
+        newBetItem.pot = newBetItem.pot.replace("\\s".toRegex(), "_")
         val bitmap = QRCode.from(newBetItem.toString()).withSize(1000, 1000).bitmap()
 
         (rootView.findViewById<View>(R.id.qr_code_image) as ImageView).setImageBitmap(bitmap)

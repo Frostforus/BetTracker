@@ -12,7 +12,7 @@ data class BetItem(
     @ColumnInfo(name = "name_of_bet_with") var nameOfBetWith: String,
     @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "category") val category: Category,
-    @ColumnInfo(name = "pot") val pot: String,
+    @ColumnInfo(name = "pot") var pot: String,
     @ColumnInfo(name = "status") val status: Status,
 
     @ColumnInfo(name = "bet_end_year") val betEndYear: Short,
