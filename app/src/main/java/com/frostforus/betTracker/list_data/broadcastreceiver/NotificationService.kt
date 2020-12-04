@@ -65,8 +65,8 @@ class NotificationService : Service() {
         val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val mBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(applicationContext, default_notification_channel_id)
-        mBuilder.setContentTitle("My Notification")
-        mBuilder.setContentText("Notification Listener Service Example")
+        mBuilder.setContentTitle("Bet Tracker")
+        mBuilder.setContentText("Check Your Bets to see if any of them are over! \n (This is only this fast for show)")
         mBuilder.setTicker("Notification Listener Service Example")
         mBuilder.setSmallIcon(R.drawable.ic_launcher_foreground)
         mBuilder.setAutoCancel(true)

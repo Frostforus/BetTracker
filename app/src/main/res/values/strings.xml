@@ -53,5 +53,7 @@
     <string name="bet_status_label">Bet status:</string>
     <string name="bet_start_label">Bet Start:</string>
     <string name="bet_end_label">Bet End:</string>
+    <string name="new_name">New Name</string>
+    <string name="change_name">Change Name</string>
 
 </resources>

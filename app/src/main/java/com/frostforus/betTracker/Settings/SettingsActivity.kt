@@ -22,7 +22,13 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        database = Room.databaseBuilder(
+            applicationContext,
+            BetListDatabase::class.java,
+            "bet-list"
+        ).fallbackToDestructiveMigration().build()
 
+        loadName()
 
         btn_toggle_notifications.setOnClickListener {
             Log.v("SERVICE", "Button hit")
@@ -53,15 +59,24 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         new_name_button.setOnClickListener {
-            database = Room.databaseBuilder(
-                applicationContext,
-                BetListDatabase::class.java,
-                "bet-list"
-            ).fallbackToDestructiveMigration().build()
+
 
             changeName(edittext_new_name.text.toString())
 
         }
+    }
+
+    private fun loadName() {
+        thread {
+            edittext_new_name.setText(
+                if (!database.NameItemSingletonDao().getName().isNullOrEmpty()) {
+                    database.NameItemSingletonDao().getName()[0].name
+                } else {
+                    getString(R.string.new_name)
+                }
+            )
+        }
+
     }
 
     private fun changeName(newName: String) {
